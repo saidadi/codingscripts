@@ -5,35 +5,83 @@ We can potentially identify patterns or trends in the data by using this analysi
 
 '''
 
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load the dataset
-df = pd.read_csv('Electric_Vehicle_Population_Data.csv')
 
-# Subset the data for analysis
-subset_df = df[['Make', 'Model', 'Electric Range']]
+class P4:
+    """
+    P4 class for analysis and visualization of Electric Vehicle Population Data.
 
-# Filter out rows with missing values
-subset_df = subset_df.dropna()
+    Attributes:
+    - df (pd.DataFrame): DataFrame containing Electric Vehicle Population Data.
+    - subset_df (pd.DataFrame): Subset of the original data with selected columns for analysis.
 
-# Create a scatterplot to visualize the distribution of electric range by make using Matplotlib
-plt.figure(figsize=(10, 6))
-plt.title("Electric Range by Vehicle Make (Matplotlib)")
-plt.scatter(subset_df['Make'], subset_df['Electric Range'], alpha=0.3)
-plt.xlabel("Make")
-plt.ylabel("Electric Range (miles)")
-plt.xticks(rotation=90)
-plt.show()
+    Methods:
+    - __init__(): Constructor method to initialize the P4 object, load data, and prepare a subset for analysis.
 
-# Create a scatterplot to visualize the distribution of electric range by make using Seaborn
-plt.figure(figsize=(10, 6))
-plt.title("Electric Range by Vehicle Make (Seaborn)")
-sns.scatterplot(data=subset_df, x='Make', y='Electric Range', alpha=0.3)
-plt.xlabel("Make")
-plt.ylabel("Electric Range (miles)")
-plt.xticks(rotation=90)
-plt.show()
+    - distribution_of_electric_range_matplotlib():
+        Visualizes the distribution of electric range by vehicle make using Matplotlib.
+
+        Returns:
+        None. Displays a scatterplot.
+
+    - distribution_of_electric_range_seaborn():
+        Visualizes the distribution of electric range by vehicle make using Seaborn.
+
+        Returns:
+        None. Displays a scatterplot.
+    """
+
+    def __init__(self):
+        """
+        Constructor for the P4 class.
+
+        - Loads Electric Vehicle Population Data from a CSV file.
+        - Creates a subset of the data containing 'Make', 'Model', and 'Electric Range'.
+        - Filters out rows with missing values.
+        """
+        self.df = pd.read_csv(
+            'https://raw.githubusercontent.com/saidadi/codingscripts/main/sai/Electric_Vehicle_Population_Data%20(3).csv')
+
+        # Subset the data for analysis
+        self.subset_df = self.df[['Make', 'Model', 'Electric Range']]
+
+        # Filter out rows with missing values
+        self.subset_df = self.subset_df.dropna()
+
+    def distribution_of_electric_range_matplotlib(self):
+        """
+        Visualizes the distribution of electric range by vehicle make using Matplotlib.
+
+        Returns:
+        None. Displays a scatterplot.
+        """
+        plt.figure(figsize=(10, 6))
+        plt.title("Electric Range by Vehicle Make (Matplotlib)")
+        plt.scatter(self.subset_df['Make'], self.subset_df['Electric Range'], alpha=0.3)
+        plt.xlabel("Make")
+        plt.ylabel("Electric Range (miles)")
+        plt.xticks(rotation=90)
+        output = plt.show()
+        return output
+
+    def distribution_of_electric_range_seaborn(self):
+        """
+        Visualizes the distribution of electric range by vehicle make using Seaborn.
+
+        Returns:
+        None. Displays a scatterplot.
+        """
+        plt.figure(figsize=(10, 6))
+        plt.title("Electric Range by Vehicle Make (Seaborn)")
+        sns.scatterplot(data=self.subset_df, x='Make', y='Electric Range', alpha=0.3)
+        plt.xlabel("Make")
+        plt.ylabel("Electric Range (miles)")
+        plt.xticks(rotation=90)
+        output = plt.show()
+        return output
+
+
 
